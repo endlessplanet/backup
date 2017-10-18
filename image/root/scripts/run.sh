@@ -2,7 +2,7 @@
 
 apk update &&
     apk upgrade &&
-    apk add --no-cache bash gpgme sudo &&
+    apk add --no-cache bash gpgme sudo py-pip &&
     cp /opt/docker/etc/sudo.txt /etc/sudoers.d/user &&
     adduser -D user &&
     mkdir /home/user/bin &&
@@ -12,5 +12,6 @@ apk update &&
             chmod 0500 /home/user/bin/${FILE%.*}
     done &&
     chown -R user:user /home/user/bin &&
-    ln -sf /home/user/bin/bashrc /home/user/.bashrc
+    ln -sf /home/user/bin/bashrc /home/user/.bashrc &&
+    pip install awscli --upgrade --user &&
     rm -rf /var/cache/apk/*
